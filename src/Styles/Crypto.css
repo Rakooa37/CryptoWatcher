@@ -1,0 +1,153 @@
+.crypto{
+    font-family: 'Prosto One', cursive;
+    font-size: 1rem;
+    background-color: whitesmoke;
+    min-height: 100vh ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8rem;
+    padding: 3rem;
+}
+
+.crypto__right-section{
+    display: flex; 
+    flex-direction: column;
+    gap: 0.5rem;
+    
+}
+
+.crypto__left-section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.crypto__table{
+    display: flex;
+    gap: 2rem;
+}
+
+.crypto__table-left{
+    text-align: left;
+    line-height: 3rem;
+}
+.crypto__table-right{
+    text-align: right;
+    line-height: 3rem;
+    
+}
+
+.crypto__third-section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10rem;
+}
+
+.crypto__name{
+    font-size: 2rem;
+    padding-left: 0.5rem;
+    padding-right:1rem;
+}
+
+.crypto__symbol{
+    font-size: 1.2rem;
+    background-color: rgba(0,0,0,0.15);
+    font-weight: 500;
+}
+
+.crypto__rank{
+    font-size: 1.15rem;
+    background-color: rgba(0,0,0,0.15);
+    align-self: flex-start;
+    font-weight: 500;
+    
+}
+
+.crypto__price{
+    font-size: 1.7rem;
+    padding:1rem 0;
+    font-weight: 600;
+}
+
+.crypto__24h-change{
+    font-size: 1.2rem;
+}
+
+.crypto__main{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    align-self: flex-start;
+    padding-bottom: 0.5rem;
+}
+
+.crypto__secondary{
+    display: flex;
+    align-self: flex-start;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.crypto__homepage{
+    align-self: flex-start;
+}
+
+
+.button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.25);
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #DFDEDF;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+.button:hover{
+    transform: scale(1.01);
+    opacity: 95%;
+}
+
+
+
+@media screen and (max-width:1547px) {
+
+    .crypto{
+        gap:2rem;
+        font-size: 0.8rem;
+        padding: 1rem;
+    }
+
+    .crypto__table{
+        gap:20;
+        padding: 0;
+        margin: 0;
+    }
+
+    
+
+    .crypto__third-section{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      
+    }
+   
+}
+

@@ -1,0 +1,21 @@
+.watchlist{
+    font-family: 'Prosto One', cursive;
+    text-align: center;
+    font-size: 1rem;
+    background-color: whitesmoke;
+    min-height: 100vh;
+}
+
+.watchlist__title{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 2rem;
+    background-color: whitesmoke;
+}
+
+.watchlist .star{
+    color: rgb(204, 204, 100);
+}
+.watchlist .star:hover{
+    transform: scale(1);
+}
