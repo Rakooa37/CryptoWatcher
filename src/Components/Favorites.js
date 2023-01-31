@@ -2,10 +2,13 @@ import { Link, useLocation } from "react-router-dom"
 import Navbar from "./Navbar"
 import Coin from "./Coin"
 import "../Styles/Favorites.css"
+import { useContext, useEffect } from "react"
+import { CoinsContext } from "./CoinsContext"
 
 export default function Favorites(){
 
-    const location = useLocation()
+    const {favoriteCoins, setFavoriteCoins} = useContext(CoinsContext);
+
     return(
         
         <div className="watchlist">
@@ -21,9 +24,8 @@ export default function Favorites(){
                 <div className='coin__market-cap'>Mkt cap</div>
                 <div className='coin__ath'>All time high</div>
             </div>
-                
-                {JSON.parse(sessionStorage.getItem('favoriteCoins')).coins.map((element, i)=>{
-                    console.log(element);
+
+                {favoriteCoins !== [] && favoriteCoins.map((element, i)=>{
                     return <Coin cryptoId = {element.id}  coin = {element} key = {i} id = {i} onClick={()=>{}}></Coin>
                 })}
             </div>

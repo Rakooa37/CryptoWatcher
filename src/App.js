@@ -1,14 +1,18 @@
 import './App.css';
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Navbar from './Components/Navbar';
 import Coin from './Components/Coin'
 import TopSearchedCoin from './Components/TopSearchCoin';
+import { CoinsContext } from './Components/CoinsContext';
 
 
 function App() {
-
+  
+  const {favoriteCoins, setFavoriteCoins} = useContext(CoinsContext)
   const [coins, setCoins] = useState([])
-  const [favoriteCoins, setFavoriteCoins] = useState(JSON.parse(sessionStorage.getItem('favoriteCoins')).coins)
+    
+  
+  
   const [topSearchedCoins, setTopSearchedCoins] = useState([])
 
   const handleAddFavorites = (e)=>{
@@ -50,10 +54,6 @@ function App() {
       //getCoins()
     }, 10000)
   }, [])
-
-  useEffect(()=>{
-    window.sessionStorage.setItem("favoriteCoins", JSON.stringify({'coins': favoriteCoins}));
-  }, [favoriteCoins])
 
   
   return (

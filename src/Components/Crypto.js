@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import NavbarCrypto from "./NavbarCrypto";
 import '../Styles/Crypto.css'
 import { LineChart, Line} from 'recharts';
+import { CoinsContext } from "./CoinsContext";
 
 
 export default function Crypto(props){
-
+    const msg = useContext(CoinsContext)
     const [crypto, setCrypto] = useState({})
     const [marketData, setMarketData] = useState([])
     const [prices, setMarketPrices] = useState([])
@@ -16,12 +17,14 @@ export default function Crypto(props){
     async function getCoins(){
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
         const data = await response.json()
+        console.log(data);
         setCrypto(data)
     }
 
     async function getMarketData(){
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=30`)
         const data = await response.json()
+        console.log(data);
         setMarketData(data.prices)
     }
 
@@ -37,6 +40,14 @@ export default function Crypto(props){
         let obj = {name:"1", price:element[1]}
         data.push(obj)
     })
+
+    const checkDataValidity = ()=>{
+        if(Object.values(crypto.marketData.total_supply !== null)){
+            return '-'
+        }else{
+            return crypto.marketData.total_supplytoLocaleString('en-US')
+        }
+    }
 
     return(
         <>
@@ -67,7 +78,6 @@ export default function Crypto(props){
                             <div className="crypto__table-left">
                                 <div>Market cap:</div>
                                 <div>Total volume:</div>
-                                <div>Total supply:</div>
                                 <div>Circulating supply:</div>
                                 <div>24h-high:</div>
                                 <div>24h-low:</div>
@@ -76,17 +86,12 @@ export default function Crypto(props){
                             <div className="crypto__table-right">
                                 <div className="crypto__market-cap"> {crypto.market_data && crypto.market_data.market_cap.usd.toLocaleString('en-US')} $</div>
                                 <div className="crypto__total-volume"> {crypto.market_data && crypto.market_data.total_volume.usd.toLocaleString('en-US')} $</div>
-                                <div className="crypto__total_supply"> {crypto.market_data && crypto.market_data.total_supply.toLocaleString('en-US')}</div>
+                                {/* <div className="crypto__total_supply"> {checkDataValidity()}</div> */}
                                 <div className="crypto__circulating_supply"> {crypto.market_data && crypto.market_data.circulating_supply.toLocaleString('en-US')}</div>
                                 <div className="crypto__24_high"> {crypto.market_data && crypto.market_data.high_24h.usd.toLocaleString('en-US')} $</div>
                                 <div className="crypto__24_low"> {crypto.market_data && crypto.market_data.low_24h.usd.toLocaleString('en-US')} $</div>
                             </div>
                         </div>
-                        
-
-                       
-
-                        
                        
 
                     </div>
