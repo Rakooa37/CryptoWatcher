@@ -7,7 +7,6 @@ import { CoinsContext } from "./CoinsContext";
 
 
 export default function Crypto(props){
-    const msg = useContext(CoinsContext)
     const [crypto, setCrypto] = useState({})
     const [marketData, setMarketData] = useState([])
     const [prices, setMarketPrices] = useState([])
@@ -36,10 +35,13 @@ export default function Crypto(props){
 
     const data = [] 
 
-    marketData.forEach((element)=>{
-        let obj = {name:"1", price:element[1]}
-        data.push(obj)
-    })
+    if(marketData){
+        marketData.forEach((element)=>{
+            let obj = {name:"1", price:element[1]}
+            data.push(obj)
+        })
+    }
+   
 
     const checkDataValidity = ()=>{
         if(Object.values(crypto.marketData.total_supply !== null)){
@@ -53,7 +55,7 @@ export default function Crypto(props){
         <>
             <NavbarCrypto></NavbarCrypto>
             <div className="crypto">
-
+                    
                     <div className="crypto__right-section">
                         <div className="crypto__main">
                             <img src={crypto.image && crypto.image.small} alt=""></img>
@@ -78,6 +80,7 @@ export default function Crypto(props){
                             <div className="crypto__table-left">
                                 <div>Market cap:</div>
                                 <div>Total volume:</div>
+                                <div>Total supply:</div>
                                 <div>Circulating supply:</div>
                                 <div>24h-high:</div>
                                 <div>24h-low:</div>
@@ -86,7 +89,7 @@ export default function Crypto(props){
                             <div className="crypto__table-right">
                                 <div className="crypto__market-cap"> {crypto.market_data && crypto.market_data.market_cap.usd.toLocaleString('en-US')} $</div>
                                 <div className="crypto__total-volume"> {crypto.market_data && crypto.market_data.total_volume.usd.toLocaleString('en-US')} $</div>
-                                {/* <div className="crypto__total_supply"> {checkDataValidity()}</div> */}
+                                <div className="crypto__total_supply"> {crypto.market_data && crypto.market_data.total_supply ? crypto.market_data.total_supply.toLocaleString('en-US') : "-"}</div>
                                 <div className="crypto__circulating_supply"> {crypto.market_data && crypto.market_data.circulating_supply.toLocaleString('en-US')}</div>
                                 <div className="crypto__24_high"> {crypto.market_data && crypto.market_data.high_24h.usd.toLocaleString('en-US')} $</div>
                                 <div className="crypto__24_low"> {crypto.market_data && crypto.market_data.low_24h.usd.toLocaleString('en-US')} $</div>

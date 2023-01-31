@@ -43,7 +43,16 @@ body{
 
 .coin__header > .coin__position{
   width: 5rem;
-  
+}
+
+.coin__header .coin__change{
+  cursor: pointer;
+}
+
+
+
+.coin__header .caret:hover{
+  visibility: visible;
 }
 
 .coin .coin__logo{
@@ -186,10 +195,13 @@ body{
 
   .coin__header .coin__change{
     width: 5rem;
+    cursor: pointer;
+    
   }
 
   .coin .coin__change{
     width: 5rem;
+    
   }
 
   .coin .coin__price{
@@ -198,6 +210,7 @@ body{
 
   .coin__header .coin__price{
     width: 5rem;
+    
   }
 
   .coin__header .coin__position{

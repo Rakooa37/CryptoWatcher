@@ -10,10 +10,9 @@ function App() {
   
   const {favoriteCoins, setFavoriteCoins} = useContext(CoinsContext)
   const [coins, setCoins] = useState([])
-    
-  
-  
   const [topSearchedCoins, setTopSearchedCoins] = useState([])
+  const [isClickedSort, setIsClickedSort] = useState(null)
+  const [isClickedMktCap, setIsClickedMktCap] = useState(null)
 
   const handleAddFavorites = (e)=>{
     let id = e.target.id
@@ -55,8 +54,53 @@ function App() {
     }, 10000)
   }, [])
 
+
+  const sortPricesUp = ()=>{
+    let unsortedCoins = [...coins]
+    let sortedCoins = unsortedCoins.sort((a,b)=>{
+      return b.price_change_percentage_24h - a.price_change_percentage_24h
+    })
+    setCoins(sortedCoins)
+    setIsClickedSort(!isClickedSort)
+    return sortedCoins
+
+  }
+
+  const sortPricesDown = ()=>{
+    let unsortedCoins = [...coins]
+    let sortedCoins = unsortedCoins.sort((a,b)=>{
+      return a.price_change_percentage_24h - b.price_change_percentage_24h
+    })
+    setCoins(sortedCoins)
+    setIsClickedSort(!isClickedSort)
+    return sortedCoins
+
+  }
+
+  const sortMktUp = ()=>{
+    let unsortedCoins = [...coins]
+    let sortedCoins = unsortedCoins.sort((a,b)=>{
+      return b.market_cap - a.market_cap
+    })
+    setCoins(sortedCoins)
+    setIsClickedMktCap(!isClickedMktCap)
+    return sortedCoins
+
+  }
+
+  const sortMktDown = ()=>{
+    let unsortedCoins = [...coins]
+    let sortedCoins = unsortedCoins.sort((a,b)=>{
+      return a.market_cap - b.market_cap
+    })
+    setCoins(sortedCoins)
+    setIsClickedMktCap(!isClickedMktCap)
+    return sortedCoins
+
+  }
   
   return (
+
     <div className="App">
         <Navbar favoriteCoins = {favoriteCoins}></Navbar>
         <div className='banner'>Top searched:{topSearchedCoins && topSearchedCoins.map((element)=>{
@@ -67,12 +111,12 @@ function App() {
             <div className='coin__position'>#</div>
             <div className= 'coin__name'>Name</div>
             <div className='coin__price'>Price</div>
-            <div className='coin__change'>24h%</div>
-            <div className='coin__market-cap'>Mkt cap</div>
+            <div className='coin__change' onClick = {isClickedSort ? sortPricesUp : sortPricesDown}>24h% ^</div>
+            <div className='coin__market-cap' onClick = {isClickedMktCap ? sortMktUp : sortMktDown}>Mkt cap ^</div>
             <div className='coin__ath'>All time high</div>
         </div>
           {coins && coins.map((element)=>{
-            return <Coin coin = {element} cryptoId = {element.id} key = {coins && coins.indexOf(element)} id = {coins && coins.indexOf(element)} onClick={handleAddFavorites}></Coin>
+            return <Coin coin = {element} cryptoId = {element.id} key = {coins && coins.indexOf(element)} id = {coins && coins.indexOf(element)} onClick={handleAddFavorites} isClicked = {isClickedSort}></Coin>
           })}
         </div>
     </div>)}
